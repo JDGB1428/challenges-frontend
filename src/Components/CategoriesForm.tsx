@@ -16,6 +16,7 @@ const CategoriesForm = ({ open, onClose }: ModalProps) => {
         register,
         handleSubmit,
         control,
+        reset,
         formState: { errors },
     } = useForm<IFormCategories>({
         defaultValues: {
@@ -55,26 +56,24 @@ const CategoriesForm = ({ open, onClose }: ModalProps) => {
 
     const onSubmit: SubmitHandler<IFormCategories> = async (values) => {
         try {
-            const f = values.icon?.[0];
-            if (!f) return;
+            const file = values.icon?.[0];
+            if (!file) return;
 
             const payload = {
                 name: values.name,
                 description: values.description,
                 color: values.color,
                 status: (values.status ? 1 : 0) as 0 | 1,
-                icon: f,
+                icon: file,
             };
 
             await fetchActions(payload);
-
-            toast.success("Acción creada correctamente", {
+            reset();
+            onClose();
+            toast.success("Acción fue creada correctamente", {
                 position: "top-right",
                 autoClose: 4000,
-                theme: "light",
-                transition: Bounce,
-            });
-            onClose(); 
+            }); 
         } catch (err: unknown) {
             const error = err as AxiosError;
             const status = error?.response?.status;
@@ -95,7 +94,6 @@ const CategoriesForm = ({ open, onClose }: ModalProps) => {
             <div className="absolute inset-0 bg-slate-900/50" onClick={onClose} />
             <div className="absolute inset-0 flex items-center justify-center p-4">
                 <div className="w-full max-w-xl rounded-2xl bg-white shadow-xl border border-slate-200 overflow-hidden">
-                    {/* header */}
                     <div className="px-5 py-4 border-b border-slate-200 flex items-center justify-between">
                         <div>
                             <h3 className="text-lg font-semibold text-slate-900">Crear categoría</h3>
@@ -112,7 +110,6 @@ const CategoriesForm = ({ open, onClose }: ModalProps) => {
                         </button>
                     </div>
 
-                    {/* body */}
                     <div className="p-5">
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="mb-5">
@@ -138,7 +135,6 @@ const CategoriesForm = ({ open, onClose }: ModalProps) => {
                                 <label htmlFor="icon">Logo</label>
 
                                 <div className="mt-2 flex items-center gap-3">
-                                    {/* preview */}
                                     <div className="h-16 w-16 rounded-xl border border-slate-200 overflow-hidden bg-slate-50 flex items-center justify-center">
                                         {previewUrl ? (
                                             <img src={previewUrl} alt="preview" className="h-full w-full object-cover" />
