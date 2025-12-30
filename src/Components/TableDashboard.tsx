@@ -188,7 +188,6 @@ const TableDashboard = () => {
                 </table>
             </div>
 
-            {/* Footer / paginación */}
             <div className="flex flex-col md:flex-row md:items-center md:justify-end gap-3 px-4 py-3 border-t border-slate-200 bg-white">
                 <div className="flex items-center gap-2 text-xs text-slate-600">
                     <span>Resultados por página</span>
