@@ -7,22 +7,7 @@ import { ToastContainer } from "react-toastify";
 
 const Categories = () => {
     const [tab, setTab] = useState("Categorias");
-    const [query, setQuery] = useState("");
     const [open, setOpen] = useState(false);
-
-    // const filtered = useMemo(() => {
-    //     const q = query.trim().toLowerCase();
-    //     if (!q) return rows;
-    //     return rows.filter((r) => {
-    //         return (
-    //             r.name.toLowerCase().includes(q) ||
-    //             r.description.toLowerCase().includes(q) ||
-    //             r.status.toString().includes(q)
-    //         );
-    //     });
-    // }, [rows, query]);
-
-    
 
     return (
 
@@ -35,14 +20,11 @@ const Categories = () => {
 
             <div className="mt-5 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
                 <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-                    {/* Search */}
                     <div className="relative w-full sm:w-[360px]">
                         <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
                             <Icons name="search" className="w-4 h-4" />
                         </span>
                         <input
-                            value={query}
-                            onChange={(e) => setQuery(e.target.value)}
                             placeholder="Buscar"
                             className="w-full pl-10 pr-3 py-2 rounded-lg border border-slate-200 bg-white text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/30"
                         />
