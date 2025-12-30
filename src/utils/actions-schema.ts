@@ -6,7 +6,7 @@ export const DatumSchema = z.object({
     description: z.string(),
     icon: z.string(),
     color: z.string(),
-    status: z.union([z.literal(0), z.literal(1)]), // ✅ aquí
+    status: z.union([z.literal(0), z.literal(1)]), 
     createdAt: z.coerce.date(),
 });
 export type Datum = z.infer<typeof DatumSchema>;
