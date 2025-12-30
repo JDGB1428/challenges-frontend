@@ -1,7 +1,6 @@
 import { Outlet } from "react-router";
 import Sidebar from "../Components/Sidebar";
 import Topbar from "../Components/Topbar";
-import { ToastContainer } from "react-toastify";
 
 
 const DashboardLayout = () => {
@@ -14,7 +13,6 @@ const DashboardLayout = () => {
                     <Outlet />
                 </main>
             </div>
-            <ToastContainer />
         </div>
     )
 }
