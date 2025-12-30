@@ -21,7 +21,7 @@ export const fetchAdminList =  async ({ pageNumber, pageSize }: { pageNumber: nu
         throw new Error("Schema inválido en admin-list");
     }
 
-    return parsed.data.data; // ✅ devuelve Data (objeto paginado)
+    return parsed.data.data;
 };
 
 export const fetchAddAction = async (payload: AdminAdd) => {
