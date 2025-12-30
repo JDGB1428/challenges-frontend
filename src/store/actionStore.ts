@@ -17,7 +17,7 @@ export type AuthState = {
     login: (req: LoginRequest) => Promise<LoginResult>;
     fetchActions: (pageNumber?: number, pageSize?: number) => Promise<void>;
     fetchAddAction: (payload: AdminAdd) => Promise<void>
-    setPage: (pageUI: number) => Promise<void>;     // ✅ 1-based UI
+    setPage: (pageUI: number) => Promise<void>;     
     setPageSize: (pageSize: number) => Promise<void>;
 };
 
@@ -48,7 +48,7 @@ export const ActionsStore = create<AuthState>((set, get) => ({
         },
     
         fetchActions: async (pageNumber = 1, pageSize = 10) => {
-            const safePageNumber = Math.max(0, pageNumber);     // ✅ nunca < 0
+            const safePageNumber = Math.max(1, pageNumber);     
             const safePageSize = Math.max(1, pageSize);
     
             const actions = await fetchAdminList({
@@ -63,17 +63,17 @@ export const ActionsStore = create<AuthState>((set, get) => ({
         const safePageUI = Math.max(1, pageUI);
         const { pageSize } = get().actions;
     
-        await get().fetchActions(safePageUI - 1, pageSize ?? 10);
+        await get().fetchActions(safePageUI, pageSize ?? 10);
         },
     
         setPageSize: async (pageSize: number) => {
         const safe = Math.max(1, pageSize);
-        await get().fetchActions(0, safe);
+        await get().fetchActions(1, safe);
         },
     
         fetchAddAction: async (payload: AdminAdd) => {
             await fetchAddAction(payload);
             const { pageNumber, pageSize } = get().actions;
-            await get().fetchActions(pageNumber ?? 0, pageSize ?? 10);
+            await get().fetchActions(pageNumber ?? 1, pageSize ?? 10);
         },
 }));
