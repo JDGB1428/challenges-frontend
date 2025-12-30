@@ -1,9 +1,9 @@
 import { Navigate, Outlet, useLocation } from "react-router"
-import { useAppStore } from "../store/useApp.Store"
+import { ActionsStore } from "../store/actionStore";
 
 
 const AuthMidleware = () => {
-    const token = useAppStore((state) => state.token)
+    const token = ActionsStore((state) => state.token)
     const location = useLocation();
 
     if (!token) {
