@@ -25,7 +25,7 @@ Dashboard administrativo para gestionar **Categorías / Acciones** consumiendo e
 npm install
 ````
 
-2. Ejecutar el poryecto
+2. Ejecutar el proyecto
 ```bash
 npm run dev
 ````
