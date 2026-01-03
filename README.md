@@ -30,6 +30,11 @@ npm install
 npm run dev
 ````
 
+3. Direccionar
+````
+http://localhost:5173/auth/login
+````
+
 1) Listado (Paginación)
 
 GET https://dev.api.bekindnetwork.com/api/v1/actions/admin-list?pageNumber=...&pageSize=...
